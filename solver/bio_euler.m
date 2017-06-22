@@ -1,5 +1,5 @@
-function [x,t]=bio_runge_4(f,ti,xi,h,N)
-%[x,t]=bio_runge_4(f,ti,xi,h,N)
+function [x,t]=bio_euler(f,ti,xi,h,N)
+%[x,t]=bio_euler(f,ti,xi,h,N)
 
 % Time vector
 t=(ti:h:ti+(sum(N)-1)*h);
