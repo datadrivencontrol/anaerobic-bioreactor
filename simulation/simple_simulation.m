@@ -17,7 +17,12 @@ p = [ 2.7421        %m1     p(1)
       10.7070       %p15    p(15)
       200       ];  %p16    p(16)  
 
-f=bio_f(p);
+D=@(t) 1
+S1in=@(t) (square(t)+1)/2
+S2in=@(t) (sin(t)+1)/2
+  
+f=bio_f(p,D,S1in,S2in);
+g=bio_g(p);
 
 ti=0;
 h=0.1;
@@ -31,11 +36,20 @@ xi=[1   0   0
 
 [x1,t1]=bio_runge_4(f,ti,xi,h,N);
 
+[q]=g(x1);
+
 figure(1)
 plot(t1,x1,'-o')
 legend('x_1(t)','x_2(t)','S_1(t)','S_2(t)','C(t)')
 title('Simple Simulation')
 xlabel('time [seconds]')
 ylabel('state')
+
+figure(2)
+plot(t1,q,'-o')
+legend('q_m(t)')
+title('Simple Simulation')
+xlabel('time [seconds]')
+ylabel('gas flow [liters/second]')
 
 
