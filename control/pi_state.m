@@ -37,6 +37,7 @@ xi=[1
 [x1,t1]=bio_runge_4(f,ti,xi,h,N);
 
 [q]=g(x1);
+[C]=10*(0.5-x1(3,:))+5*x1(6,:);
 
 figure(1)
 plot(t1,x1,'-o')
@@ -53,6 +54,11 @@ xlabel('time [seconds]')
 ylabel('gas flow [liters/second]')
 
 
-
+figure(3)
+plot(t1,C,'-o')
+legend('u(t)')
+title('Simple Simulation')
+xlabel('time [seconds]')
+ylabel('S1_{in}(t) [FOOD]')
 
           
