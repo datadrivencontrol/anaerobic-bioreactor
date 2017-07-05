@@ -12,7 +12,9 @@ f=@(x,i) [x(1)+h*x(1)*x(2);x(2)-h*x(1)*x(2)]
 xi=[1.2;0.8];
 N=50;
 
-[x1,t1]=bio_discrete(f,xi,N)
+t1=1:N;
+
+[x1]=bio_discrete(f,xi,N)
 
 figure(1)
 plot(t1,x1,'-ob')
