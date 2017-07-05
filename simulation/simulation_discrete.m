@@ -18,42 +18,50 @@ p = [ 2.7421        %m1     p(1)
       200       ];  %p16    p(16)  
 
 fu=bio_f(p);
-g=bio_g(p);
 
+u=@(t) [ t.^0              ;
+        (square(t)+1)/2    ;
+        (sin(t)+1)/2       ];
 
-u={ @(t) 1                  ;
-    @(t) (square(t)+1)/2    ;
-    @(t) (sin(t)+1)/2       }
-
-f=@(x,t) fu(x,t,u)
-
-ti=0;
+t0=0;
 h=0.1;
+N=300;
 
-N=[ 100 100 100 ];
-xi=[1   0   0
-    1   0   0
-    1   1   1
-    0   0   0
-    0   0   0   ];
+t1=t0:h:h*(N-1)
+U=u(t1);  
 
-[x1,t1]=bio_runge_4(f,ti,xi,h,N);
+[f]=bio_discretize_euler(fu,t0,h,U)
+    
+xi=[1
+    1
+    1
+    0
+    0];
+
+[x1]=bio_discrete(f,xi,N);
 
 [q]=g(x1);
 
+
 figure(1)
 plot(t1,x1,'-o')
-legend('x_1(t)','x_2(t)','S_1(t)','S_2(t)','C(t)')
 title('Simple Simulation')
 xlabel('time [seconds]')
 ylabel('state')
 
+
+
 figure(2)
-plot(t1,q,'-o')
+hold on
+plot(t,q,'-or')
+hold on
 legend('q_m(t)')
 title('Simple Simulation')
 xlabel('time [seconds]')
 ylabel('gas flow [liters/second]')
+
+
+
 
 
 

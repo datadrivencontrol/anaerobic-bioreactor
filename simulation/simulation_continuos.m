@@ -20,30 +20,25 @@ p = [ 2.7421        %m1     p(1)
 fu=bio_f(p);
 g=bio_g(p);
 
-r=5;
-
-u=@(x,t) [  1; 
-            1*(r-g(x(1:5)))+0.5*x(6);
-            0] 
-
-f=@(x,t) [  fu(x(1:5),t, u(x,t))    ;
-            (r-g(x(1:5)))           ];
+u=@(t) [ 1                 ;
+        (square(t)+1)/2    ;
+        (sin(t)+1)/2       ];
+    
+f=@(x,t) fu(x,t, u(t) )
 
 ti=0;
 h=0.1;
 
-N=[ 300 ];
-xi=[1   
-    1   
-    1   
-    0   
-    0 
+N=[ 300];
+xi=[1  
+    1  
+    1  
+    0  
     0];
 
-[x1,t1]=bio_runge_4(f,ti,xi,h,N);
+[x1,t1]=bio_euler(f,ti,xi,h,N);
 
 [q]=g(x1);
-[C]=1*(r-g(x1(1:5,:)))+0.5*x1(6,:);
 
 figure(1)
 plot(t1,x1,'-o')
@@ -59,13 +54,5 @@ title('Simple Simulation')
 xlabel('time [seconds]')
 ylabel('gas flow [liters/second]')
 
-figure(3)
-plot(t1,C,'-o')
-legend('u(t)')
-title('Simple Simulation')
-xlabel('time [seconds]')
-ylabel('S1_{in}(t) [FOOD]')
 
 
-
-          
