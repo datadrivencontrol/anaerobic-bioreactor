@@ -1,3 +1,4 @@
+clear all
 % Simulation example
 
 p = [ 2.7421        %m1     p(1)
