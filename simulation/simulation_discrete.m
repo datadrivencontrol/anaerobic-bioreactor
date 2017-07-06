@@ -1,3 +1,4 @@
+clear all
 % Simulation example
 
 p = [ 2.7421        %m1     p(1)
@@ -18,6 +19,7 @@ p = [ 2.7421        %m1     p(1)
       200       ];  %p16    p(16)  
 
 fu=bio_f(p);
+g=bio_g(p);
 
 u=@(t) [ t.^0              ;
         (square(t)+1)/2    ;
@@ -53,7 +55,7 @@ ylabel('state')
 
 figure(2)
 hold on
-plot(t,q,'-or')
+plot(t1,q,'-or')
 hold on
 legend('q_m(t)')
 title('Simple Simulation')

@@ -1,4 +1,4 @@
-function [x]=bio_discrete(fd,xi,N,U)
+function [x]=bio_discrete(fd,xi,N)
 
 x=xi;
 
