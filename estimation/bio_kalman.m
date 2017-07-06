@@ -5,8 +5,8 @@ XC=[xc];
 
 for i=1:(N-1)
     xc=F*xc+B*u(:,i);
-    P=F*P*F'+B*Q*B';
-    y=z(i)-H*xc;
+    P=F*P*F'+Q;
+    y=z(i+1)-H*xc;
     S=H*P*H'+R;
     K=P*H'*inv(S);
     xc=xc+K*y;
