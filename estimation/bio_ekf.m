@@ -1,5 +1,5 @@
 function [XC]=bio_ekf(f,g,F,H,xc,Q,R,P,u,z)
-% [XC]=bio_ekf(f,g,F,H,xc,Q,R,P,u,z)
+%[XC]=bio_ekf(f,g,F,H,xc,Q,R,P,u,z)
 
 N=length(z);
 M=length(xc);
