@@ -2,24 +2,25 @@ function [XC]=bio_ekf(f,g,F,H,xc,Q,R,P,u,z)
 % [XC]=bio_ekf(f,g,F,H,xc,Q,R,P,u,z)
 
 N=length(z);
-XC=[xc];
+M=length(xc);
 
-for i=1:(N-1)
-    
-    FF=F(xc,i,u(:,i))
-    
-    xc=f(xc,i,u(:,i));
-    
-    HH=H(xc,i)
+XC=[];
 
+for i=1:N
     
-    P=FF*P*FF'+Q;
-    y=z(i+1)-g(xc,i);
+    y=z(i)-g(xc,i);
+    HH=H(xc,i);
     S=HH*P*HH'+R;
     K=P*HH'*inv(S);
     xc=xc+K*y;
-    P=(eye(2)-K*HH)*P;
+    P=(eye(M)-K*HH)*P;
     XC=[XC xc];
+    
+    
+    xc=f(xc,i,u(:,i));
+    FF=F(xc,i,u(:,i));
+    P=FF*P*FF'+Q;
+
 end
 
 
