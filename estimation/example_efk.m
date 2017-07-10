@@ -22,22 +22,22 @@ N=500;
 
 t1=1:N;
 
-Q=0.000001*eye(2,2)
-R=0.00*eye(1,1)
-P=0*eye(2,2)
+Q=0.01*eye(2,2);
+R=0.01*eye(1,1);
+P=1*eye(2,2);
 
 u=0.01*(-square(t1/50)+1);
-w=sqrt(Q)*randn(2,N)
-v=sqrt(R)*randn(1,N)
+w=sqrt(Q)*randn(2,N);
+v=sqrt(R)*randn(1,N);
 
 
-fu=@(x,i) f(x,i,u(i))
+fu=@(x,i) f(x,i,u(i));
 
 
-[x1]=bio_discrete(fu,xi,N)
-[y1]=g(x1,0)+v
+[x1]=bio_discrete(fu,xi,N);
+[y1]=g(x1,0)+v;
 
-[xc]=bio_ekf(f,g,F,H,xi*2,Q,R,P,u,y1)
+[xc]=bio_ekf(f,g,F,H,xi,Q,R,P,u,y1);
 
 % Figures
 figure(1)
