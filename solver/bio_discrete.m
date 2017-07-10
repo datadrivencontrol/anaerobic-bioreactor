@@ -1,4 +1,5 @@
 function [x]=bio_discrete(fd,xi,N)
+%[x]=bio_discrete(fd,xi,N)
 
 x=xi;
 

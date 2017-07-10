@@ -1,4 +1,5 @@
 function [XC]=bio_kalman(F,B,H,xc,Q,R,P,u,z)
+%[XC]=bio_kalman(F,B,H,xc,Q,R,P,u,z)
 
 N=length(z);
 M=length(xc);
