@@ -1,4 +1,4 @@
-function [g]=bio_g(p)
+function [g]=bio_g_simple(p)
 % Diferential Equations
 %
 % x1'(t) = ( v1(S1(t)) - p7 * D(t) - p8 ) * x1(t)
@@ -19,8 +19,11 @@ function [g]=bio_g(p)
 %
 % qm(t) = p13 * v2(S2(t)) * x2(t) + p15 * C(t)
 
-v1=@(S1) p(1)*S1./(p(2)+S1+p(3)*S1.^2);
+v1=@(S1) S1/(S1+p(3));
 
-v2=@(S2) p(4)*S2./(p(5)+S2+p(6)*S2.^2);
+%v2=@(S2) (2*p(4)+1)*S2./(p(4)+S2+p(4)*S2.^2);
 
-g=@(x) [p(13)*v2(x(4,:)).*x(2,:)+p(15)*x(5,:)];
+v2=@(S2) -S2.^2+2*S2;
+
+
+g=@(x) [p(2)*v2(x(2,:)).*x(4,:)];

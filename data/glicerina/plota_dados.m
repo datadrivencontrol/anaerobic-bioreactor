@@ -32,6 +32,7 @@ figure(11)
 T=cumsum(v1);
 T=T-T(203);
 Tm=max(T);
+Tm=2e5
 stairs(T)
 hold on
 stairs(g*300)
@@ -47,6 +48,7 @@ figure(12)
 T=cumsum(v2);
 T=T-T(203);
 Tm=max(T);
+Tm=2e5
 stairs(T)
 hold on
 stairs(g*300)
@@ -62,6 +64,7 @@ figure(13)
 T=cumsum(v3);
 T=T-T(203);
 Tm=max(T);
+Tm=2e5
 stairs(T)
 hold on
 stairs(g*300)
